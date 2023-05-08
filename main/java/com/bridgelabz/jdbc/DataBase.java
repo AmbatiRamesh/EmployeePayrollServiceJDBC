@@ -22,6 +22,7 @@ public class DataBase {
         LocalDate startDate = LocalDate.of(2022, 1, 1);
         LocalDate endDate = LocalDate.of(2022, 12, 31);
         EmployeePayroll.getEmployeesByJoiningDateRange(startDate, endDate);
+        employeePayroll.analyzeEmployeePayrollByGender();
     }
     public static Connection dataBase(){
         String jdbcURL = "jdbc:mysql://localhost:3306/pay_roll?useSSL=false";

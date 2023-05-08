@@ -63,4 +63,19 @@ public class EmployeePayroll extends DataBase{
         }
 
     }
+    public void analyzeEmployeePayrollByGender() throws SQLException {
+        connection = dataBase();
+        String query = "select gender, SUM(salary), AVG(salary), MIN(salary), MAX(salary), COUNT(*) FROM employee_payroll GROUP BY gender";
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+        while (resultSet.next()) {
+            String gender = resultSet.getString(1);
+            double sumSalary = resultSet.getDouble(2);
+            double avgSalary = resultSet.getDouble(3);
+            double minSalary = resultSet.getDouble(4);
+            double maxSalary = resultSet.getDouble(5);
+            int count = resultSet.getInt(6);
+            System.out.println(gender + " " + sumSalary + " " + avgSalary + " " + minSalary + " " + maxSalary + " " + count);
+        }
+    }
 }
