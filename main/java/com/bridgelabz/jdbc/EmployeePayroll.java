@@ -22,7 +22,7 @@ public class EmployeePayroll extends DataBase{
     }
     public void insertEmployeePayrollData() throws SQLException {
         connection =dataBase();
-        String insertQuery = "insert into employee_payroll (name, gender, phone,department,address, salary, start) VALUES (?, ?, ?, ?,?,?,?)";
+        String insertQuery = "insert into employee_payroll (emp_name, gender, phone,department,address, salary, startdate) VALUES (?, ?, ?, ?,?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
         preparedStatement.setString(1, "Ramesh");
         preparedStatement.setString(2, "M");
@@ -38,6 +38,15 @@ public class EmployeePayroll extends DataBase{
         connection = dataBase();
         String updateQuery = "update employee_payroll set salary = 3000000.00 where name = 'Ramesh'";
         PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
+        preparedStatement.executeUpdate();
+        System.out.println("Record updated successfully");
+    }
+    public void updateWithPreparedStementEmployeePayrollData() throws SQLException {
+        connection= dataBase();
+        String updateQuery = "update employee_payroll set salary = ? WHERE name = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
+        preparedStatement.setDouble(1, 3000000.00);
+        preparedStatement.setString(2, "Ramesh");
         preparedStatement.executeUpdate();
         System.out.println("Record updated successfully");
     }

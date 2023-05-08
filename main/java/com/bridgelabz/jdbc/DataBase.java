@@ -17,6 +17,7 @@ public class DataBase {
         employeePayroll.employeePayrollData();
         employeePayroll.insertEmployeePayrollData();
         employeePayroll.updateEmployeePayrollData();
+        employeePayroll.updateWithPreparedStementEmployeePayrollData();
     }
     public static Connection dataBase(){
         String jdbcURL = "jdbc:mysql://localhost:3306/pay_roll?useSSL=false";
