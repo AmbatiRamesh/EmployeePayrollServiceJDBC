@@ -1,8 +1,7 @@
 package com.bridgelabz.jdbc;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.time.LocalDate;
+
 public class EmployeePayroll extends DataBase{
     public void employeePayrollData() throws SQLException {
         connection = dataBase();
@@ -41,13 +40,27 @@ public class EmployeePayroll extends DataBase{
         preparedStatement.executeUpdate();
         System.out.println("Record updated successfully");
     }
-    public void updateWithPreparedStementEmployeePayrollData() throws SQLException {
+    public void updateWithPreparedStatementEmployeePayrollData() throws SQLException {
         connection= dataBase();
-        String updateQuery = "update employee_payroll set salary = ? WHERE name = ?";
+        String updateQuery = "update employee_payroll set salary = ? where name = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
         preparedStatement.setDouble(1, 3000000.00);
         preparedStatement.setString(2, "Ramesh");
         preparedStatement.executeUpdate();
         System.out.println("Record updated successfully");
+    }
+    public static void getEmployeesByJoiningDateRange(LocalDate startDate, LocalDate endDate) throws SQLException {
+        connection = dataBase();
+        String query = "select * from employee_payroll where start between ? and ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setDate(1, Date.valueOf(startDate));
+        preparedStatement.setDate(2, Date.valueOf(endDate));
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            int id = resultSet.getInt(1);
+            LocalDate start = resultSet.getDate(8).toLocalDate();
+            System.out.println( start);
+        }
+
     }
 }
