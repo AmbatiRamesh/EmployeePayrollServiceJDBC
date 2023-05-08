@@ -13,6 +13,8 @@ public class DataBase {
     public static void main(String[] args) throws SQLException {
         listOfDrivers();
         dataBase();
+        EmployeePayroll employeePayroll = new EmployeePayroll();
+        employeePayroll.employeePayrollData();
     }
     public static Connection dataBase(){
         String jdbcURL = "jdbc:mysql://localhost:3306/pay_roll?useSSL=false";
@@ -37,7 +39,6 @@ public class DataBase {
         }
         return connection;
     }
-
         public static void listOfDrivers () {
             Enumeration<java.sql.Driver> enumeration = DriverManager.getDrivers();
             while (enumeration.hasMoreElements()) {
